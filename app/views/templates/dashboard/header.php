@@ -80,15 +80,14 @@
                             <br><b style="text-transform: capitalize"><?= $data['admin']['full_name'] ?></b> <hr>   
                         </p>                                
                         <ul class="uk-nav uk-dropdown-nav"> 
+                            <?php if($data['admin']['role'] == 'admin') { ?>
                             <li> 
-                                <a href="Profile.html"> <i class="fas fa-user uk-margin-small-right"></i> Profile</a> 
-                            </li>                                             
-                            <li> 
-                               <a href="admin-edite-profile.html"> <i class="fas fa-cog uk-margin-small-right"></i> Setting</a>                                 </li>                                             
-                            <li class="uk-nav-divider"></li>                                             
+                                <a href="<?= BASEURL; ?>/dashboard/daftarPesan/0/15"> <i class="fas fa-envelope uk-margin-small-right"></i> Daftar pesan<span class="uk-badge uk-margin-small-left"><?= $data['totalpesan']['COUNT(*)'] ?></span></a> 
+                            </li>                                           
+                            <?php } ?>  
                             <li> 
                                 <a href="<?= BASEURL; ?>/dashboard/logout"> <i class="fas fa-sign-out-alt uk-margin-small-right"></i> Log out</a>
-                            </li>                                             
+                            </li>                                            
                         </ul>                                         
                     </div>                    
                 </div>                 

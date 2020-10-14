@@ -2,7 +2,7 @@
 <div class="admin-content-inner">
         <?php Flasher::flash(); ?>
     <div class="uk-flex-inline uk-flex-middle">
-        <i class="fas fa-users-cog icon-large uk-margin-right"></i>
+        <i class="fas fa-envelope icon-large uk-margin-right"></i>
         <h4 class="uk-margin-remove"> Daftar Pesan </h4>
         <!-- model -->
         
