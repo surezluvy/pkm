@@ -38,7 +38,7 @@
                     <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-collapse uk-flex-center"  uk-scrollspy="target: > div; cls:uk-animation-scale-up; delay: 100" uk-grid>
                      	<?php foreach ($data['userAdmin'] as $userAdmin): ?>
                             <div>
-                                <a href="<?= BASEURL; ?>/dashboard/kirimPesan/" class="uk-link-reset">
+                                <a href="<?= BASEURL; ?>/dashboard/pesan/" class="uk-link-reset">
                                     <div class="uk-padding-remove   uk-text-center"> 
                                         <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="<?= BASEURL; ?>/images/avatures/avature-1.png">
                                         <h5 class="uk-margin-remove-bottom uk-margin-remove-top firstLetter"><?= $userAdmin['username'] ?></h5>  
