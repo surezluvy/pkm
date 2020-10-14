@@ -163,7 +163,7 @@ class dashboardModel{
 	}
 
 	public function totalPesan(){
-		$query = "SELECT COUNT(*) FROM $this->tablePesan";
+		$query = "SELECT COUNT(*) FROM $this->tablePesan WHERE status='belum'";
 		$this->db->query($query);
 		return $this->db->single();
 	}
