@@ -140,8 +140,17 @@ class dashboardModel{
 	}
 
 	public function getPesan($id1, $id2){
-		$this->db->query("SELECT * FROM $this->tablePesan");
+		$this->db->query("SELECT * FROM $this->tablePesan WHERE status='belum'");
 		return $this->db->resultSet();
+	}
+
+	public function bacaPesan($id){
+		$query = "UPDATE $this->tablePesan SET status='dibaca' WHERE id_pesan=:id";
+		$this->db->query($query);
+		$this->db->bind('id', $id);
+		$this->db->execute();
+
+		return $this->db->rowCount();
 	}
 
 	public function hapusPesan($id){

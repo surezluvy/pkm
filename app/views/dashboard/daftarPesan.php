@@ -55,12 +55,14 @@
                     <td class="center firstLetter"> <?= $user['tanggal'] ?> </td>
                     <td class="center firstLetter"> <?= $user['isi_pesan'] ?> </td>
                     <td class="uk-flex-inline uk-flex-middle aksi">
-                        <button class="uk-button uk-button-primary admin-table-btn">
-                            <i class="fas fa-trash uk-visible@m"></i> Edit
-                        </button>
+                        <a href="<?= BASEURL; ?>/dashboard/bacaPesan/<?= $user['id_pesan'] ?>">
+                            <button class="uk-button uk-button-primary admin-table-btn">
+                                <i class="fas fa-check"></i> Tandai sudah dibaca
+                            </button>
+                        </a>
                         <a href="<?= BASEURL; ?>/dashboard/hapusPesan/<?= $user['id_pesan'] ?>">
                             <button class="uk-button uk-button-danger admin-table-btn" onclick="return confirm('Apakah anda yakin untuk menghapus data ini?')">
-                            <i class="fas fa-trash uk-visible@m"></i>Hapus
+                            <i class="fas fa-trash uk-visible@m"></i> Hapus
                             </button>
                         </a>
                     </td>

@@ -178,6 +178,17 @@ class dashboard extends Controller{
 		}
 	}
 
+	public function bacaPesan($id){
+		if ($this->model('dashboardModel')->bacaPesan($id) > 0) {
+			Flasher::setFlash('Berhasil', 'di update', 'primary');
+			header('Location: ' . BASEURL . '/dashboard/daftarPesan/0/15');
+			exit;
+		} else{
+			Flasher::setFlash('Gagal', 'di update', 'danger');
+			exit;
+		}
+	}
+
 	public function hapusPesan($id){
 		if ($this->model('dashboardModel')->hapusPesan($id) > 0) {
 			Flasher::setFlash('Berhasil', 'dihapuskan', 'primary');
