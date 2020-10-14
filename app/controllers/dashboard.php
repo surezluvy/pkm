@@ -6,33 +6,48 @@ class dashboard extends Controller{
 	public function index(){
 		// Memanggil view
 		// method view ada di code/Controller.php
+		if ($_SESSION) {
+			$data['title'] = 'Dashboard';
+			$data['bagian'] = '';
+			// Memanggil model lalu memanggil method getUser()
+			$data['admin'] = $this->model('dashboardModel')->getAdminByName();
+			$data['user'] = $this->model('dashboardModel')->getPengurus(10);
+			$data['userAdmin'] = $this->model('dashboardModel')->getUserAdmin();
+			$data['desa'] = $this->model('dashboardModel')->totalDesa();
+			$data['kecamatan'] = $this->model('dashboardModel')->totalKecamatan();
+			$data['totalpengurus'] = $this->model('dashboardModel')->totalPengurus();
+			$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
+			// Memanggil template header dan footer
+			$this->view('templates/dashboard/header', $data);
+			$this->view('/dashboard/index', $data);
+			$this->view('templates/dashboard/footer');
+		} else{
+			header('Location: ' . BASEURL . '/');
 
-		$data['title'] = 'Dashboard';
-		$data['bagian'] = '';
-		// Memanggil model lalu memanggil method getUser()
-		$data['admin'] = $this->model('dashboardModel')->getAdminByName();
-		$data['user'] = $this->model('dashboardModel')->getPengurus(10);
-		$data['userAdmin'] = $this->model('dashboardModel')->getUserAdmin();
-		$data['desa'] = $this->model('dashboardModel')->totalDesa();
-		$data['kecamatan'] = $this->model('dashboardModel')->totalKecamatan();
-		$data['totalpengurus'] = $this->model('dashboardModel')->totalPengurus();
-		$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
-		// Memanggil template header dan footer
-		$this->view('templates/dashboard/header', $data);
-		$this->view('/dashboard/index', $data);
-		$this->view('templates/dashboard/footer');
+			$this->view('templates/header');
+			$this->view('/dashboard/');
+			$this->view('templates/footer');
+		}
 	}
 
 	public function pengurus($id){
-		$data['admin'] = $this->model('dashboardModel')->getAdminByName();
-		$data['pengurus'] = $this->model('dashboardModel')->getPengurus($id);
-		$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
-		$data['title'] = 'Dashboard | Pengurus';
-		$data['bagian'] = 'Pengurus';
-		$this->view('templates/dashboard/header', $data);
-		$this->view('/dashboard/pengurus', $data);
-		$this->view('templates/dashboard/footer');
-		echo $id;
+		if ($_SESSION) {
+			$data['admin'] = $this->model('dashboardModel')->getAdminByName();
+			$data['pengurus'] = $this->model('dashboardModel')->getPengurus($id);
+			$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
+			$data['title'] = 'Dashboard | Pengurus';
+			$data['bagian'] = 'Pengurus';
+			$this->view('templates/dashboard/header', $data);
+			$this->view('/dashboard/pengurus', $data);
+			$this->view('templates/dashboard/footer');
+			echo $id;
+		} else{
+			header('Location: ' . BASEURL . '/');
+
+			$this->view('templates/header');
+			$this->view('/dashboard/');
+			$this->view('templates/footer');
+		}
 	}
 
 	public function tambahPengurus(){
@@ -70,16 +85,24 @@ class dashboard extends Controller{
 	}
 
 	public function wilayah($id1, $id2){
-		$data['admin'] = $this->model('dashboardModel')->getAdminByName();
-		$data['wilayah'] = $this->model('dashboardModel')->getWilayah($id1, $id2);
-		$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
-		$data['title'] = 'Dashboard | Wilayah';
-		$data['bagian'] = 'Wilayah';
-		$data['aktif'] = 'uk-active';
-		$data['total'] = $this->model('dashboardModel')->totalDesa();
-		$this->view('templates/dashboard/header', $data);
-		$this->view('/dashboard/wilayah', $data);
-		$this->view('templates/dashboard/footer');
+		if ($_SESSION) {
+			$data['admin'] = $this->model('dashboardModel')->getAdminByName();
+			$data['wilayah'] = $this->model('dashboardModel')->getWilayah($id1, $id2);
+			$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
+			$data['title'] = 'Dashboard | Wilayah';
+			$data['bagian'] = 'Wilayah';
+			$data['aktif'] = 'uk-active';
+			$data['total'] = $this->model('dashboardModel')->totalDesa();
+			$this->view('templates/dashboard/header', $data);
+			$this->view('/dashboard/wilayah', $data);
+			$this->view('templates/dashboard/footer');
+		} else{
+			header('Location: ' . BASEURL . '/');
+
+			$this->view('templates/header');
+			$this->view('/dashboard/');
+			$this->view('templates/footer');
+		}
 	}
 
 	public function semuaWilayah(){
@@ -107,14 +130,23 @@ class dashboard extends Controller{
 	}
 
 	public function pesan(){
-		$data['admin'] = $this->model('dashboardModel')->getAdminByName();
-		$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
-		$data['title'] = 'Dashboard | Kirim Pesan';
-		$data['bagian'] = 'Kirim Pesan';
-		$data['pesan'] = $this->model('dashboardModel')->pesan();
-		$this->view('templates/dashboard/header', $data);
-		$this->view('/dashboard/pesan', $data);
-		$this->view('templates/dashboard/footer');
+		if ($_SESSION) {
+			$data['admin'] = $this->model('dashboardModel')->getAdminByName();
+			$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
+			$data['title'] = 'Dashboard | Kirim Pesan';
+			$data['bagian'] = 'Kirim Pesan';
+			$data['pesan'] = $this->model('dashboardModel')->pesan();
+			$this->view('templates/dashboard/header', $data);
+			$this->view('/dashboard/pesan', $data);
+			$this->view('templates/dashboard/footer');
+		} else{
+			header('Location: ' . BASEURL . '/');
+
+			$this->view('templates/header');
+			$this->view('/dashboard/');
+			$this->view('templates/footer');
+		}
+		
 	}
 
 	public function kirimPesan(){
@@ -128,14 +160,22 @@ class dashboard extends Controller{
 	}
 
 	public function daftarPesan($id1, $id2){
-		$data['admin'] = $this->model('dashboardModel')->getAdminByName();
-		$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
-		$data['pesan'] = $this->model('dashboardModel')->getPesan($id1, $id2);
-		$data['title'] = 'Dashboard | Daftar Pesan';
-		$data['bagian'] = 'Daftar Pesan';
-		$this->view('templates/dashboard/header', $data);
-		$this->view('/dashboard/daftarPesan', $data);
-		$this->view('templates/dashboard/footer');
+		if ($_SESSION) {
+			$data['admin'] = $this->model('dashboardModel')->getAdminByName();
+			$data['totalpesan'] = $this->model('dashboardModel')->totalPesan();
+			$data['pesan'] = $this->model('dashboardModel')->getPesan($id1, $id2);
+			$data['title'] = 'Dashboard | Daftar Pesan';
+			$data['bagian'] = 'Daftar Pesan';
+			$this->view('templates/dashboard/header', $data);
+			$this->view('/dashboard/daftarPesan', $data);
+			$this->view('templates/dashboard/footer');
+		}else{
+			header('Location: ' . BASEURL . '/');
+
+			$this->view('templates/header');
+			$this->view('/dashboard/');
+			$this->view('templates/footer');
+		}
 	}
 
 	public function hapusPesan($id){

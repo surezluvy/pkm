@@ -2,7 +2,7 @@
 
 // Membuat base url untuk href css/js/img
 // Dipanggil menggunakan init.php
-define('BASEURL', 'http://localhost/PKM/public');
+define('BASEURL', 'http://localhost/pkmms/public');
 
 // Identitas db
 define('DB_HOST', 'localhost');
