@@ -1,0 +1,22 @@
+.firstLetter{
+	text-transform: capitalize;
+}
+
+.center{
+	text-align: center;
+}
+
+/*.alert{
+	animation: hilang 0s 3s forwards;
+	visibility: visible;
+}
+
+@keyframes hilang{
+	to {visibility: hidden;}
+}
+*/
+
+.aksi{
+	position: relative; 
+	left: 20%;
+}
